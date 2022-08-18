@@ -1,0 +1,114 @@
+<!DOCTYPE HTML><html xmlns:jmeter="http://jmeter.apache.org/">
+   <title>Schematic view of Test Plan</title>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style>
+ul.tree, ul.tree ul {
+    list-style-type: none;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAKAQMAAABPHKYJAAAAA1BMVEWIiIhYZW6zAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1ggGExMZBky19AAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC') repeat-y;
+    margin: 0;
+    padding: 0;
+}
+ul.tree ul {
+    margin-left: 10px;
+}
+ul.tree li {
+    margin: 0;
+    padding: 0 12px;
+    line-height: 20px;
+    background:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUAQMAAACK1e4oAAAABlBMVEUAAwCIiIgd2JB2AAAAAXRSTlMAQObYZgAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9YIBhQIJYVaFGwAAAARSURBVAjXY2hgQIf/GTDFGgDSkwqATqpCHAAAAABJRU5ErkJggg==') no-repeat;
+    color: #369;
+}
+ul.tree li:last-child {
+    background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUAQMAAACK1e4oAAAABlBMVEUAAwCIiIgd2JB2AAAAAXRSTlMAQObYZgAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9YIBhQIIhs+gc8AAAAQSURBVAjXY2hgQIf/GbAAAKCTBYBUjWvCAAAAAElFTkSuQmCC') no-repeat;
+}
+</style>
+   </head>
+   <body>
+      <ul class="tree" id="tree">
+         <li><b>load test </b>
+            "TEST_API" 
+            (globalVars:[],
+            executeTearDownThreadsOnShutdown: true)
+            <br>
+            &nbsp;&nbsp;&nbsp;Comments: <i style="color:green"></i></li>
+         <li>
+            <ul>
+               <li><b>run</b>
+                  "Thread Group Api" 
+                  (
+                  threads: "1000",
+                  loops: "1",
+                  ramp-up: "10"
+                  )
+                  </li>
+               <li>
+                  <ul>
+                     <li><b>http request</b>
+                        "HTTP Request GET" 
+                        (method: "GET",
+                        url: "
+                        ://localhost:3000//users",
+                        
+                        body: [
+                        
+                        ]
+                        ,
+                        upload-files: [
+                        
+                        ]
+                        )
+                        </li>
+                     <li>
+                        <ul>
+                           <li><b>write samples</b>
+                              "View Results Tree" </li>
+                        </ul>
+                     </li>
+                     <li><b>http request</b>
+                        "HTTP Request POST" 
+                        (method: "POST",
+                        url: "
+                        ://localhost:3000//users",
+                        
+                        body: "{&#xD;
+                        	"id":${counter_id},&#xD;
+                        	"name":"${__RandomString(5,qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM,)}",&#xD;
+                        	"age":${__Random(1,100,)}&#xD;
+                        }&#xD;
+                        "
+                        ,
+                        upload-files: [
+                        
+                        ]
+                        )
+                        </li>
+                     <li>
+                        <ul>
+                           <li><b>write samples</b>
+                              "View Results Tree" </li>
+                           <li><b>add headers</b>
+                              "HTTP Header Manager" 
+                              (headers:[
+                              
+                              {"content-type"=
+                              "application/json"
+                              ])
+                              </li>
+                           <li><b>CounterConfig</b>
+                              "Counter ID" </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li><b>kg.apc.jmeter.vizualizers.CorrectedResultCollector</b>
+                  "jp@gc - Active Threads Over Time" </li>
+               <li><b>kg.apc.jmeter.vizualizers.CorrectedResultCollector</b>
+                  "jp@gc - Response Times Over Time" </li>
+               <li><b>kg.apc.jmeter.vizualizers.CorrectedResultCollector</b>
+                  "jp@gc - Transactions per Second" </li>
+            </ul>
+         </li>
+      </ul>
+   </body>
+</html>
